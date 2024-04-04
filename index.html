@@ -1,13 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html id="html">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>About Me</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
+<body id="body">
+  <script>
+    function setColorTheme() {
+      let savedTheme = localStorage.getItem('theme');
+      let body = document.getElementById('body');
+      let html = document.getElementById('html');
+      if (savedTheme == 'null' || savedTheme == null) {
+        const prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+        if (prefersDarkTheme.matches) {
+          localStorage.setItem('theme', 'dark');
+          body.classList.add('dark');
+          html.classList.add('dark');
+        }
+      }
+      else {
+        if (savedTheme == 'dark') {
+          body.classList.add('dark');
+          html.classList.add('dark');
+        }
+      }
+    }
+    setColorTheme();
+  </script>
+  <!-- Darkmode Toggle Button -->
+  <div class='dark-toggle-btn' id="darkToggle" onclick="toggleDark()">
+    <div class="icon"></div>
+    <div class="theme-info">Toggle Theme</div>
+  </div>
+  <!-- Main Content -->
+  <section class="main" id="main">
+    <section class="card-container" id="cardContainer">
+      <div class="card" id="about" onclick="giveFocus('about')">
+        <div class="card-details">
+          <div class="text-title"><h2>About</h2></div>
+          <div class="card-content text">
+            <h1>About</h1>
+            <br>
+            <p>Hi, my name is Tyler. I am a semi-professional music producer and web developer. I am certified in Python, HTML/CSS, and JavaScript. I got into music production in 2020, when I wanted to make music for a game I made on <a href="https://scratch.mit.edu">Scratch</a>. As for coding, it first caught my interest in 2018 when my friend showed me what he made on scratch. I started coding with python in 2020, and in 2022 I transitioned to HTML/CSS.</p>
+            <br>
+            <p>I am 18-years-old, and live in Arizona. I am currently attending EVIT for <i>Software & App Design</i>.</p>
+          </div>
+        </div>
+        <button class="card-button" id="aboutBtn" onclick="toggleCard('about')">Open</button>
+      </div> <!-- About -->
+      <div class="card" id="projects" onclick="giveFocus('projects')">
+        <div class="card-details">
+          <div class="text-title"><h2>Projects</h2></div>
+          <div class="card-content">
+            <h1>Projects</h1>
+            <br>
+            <ul>
+              <li>
+                <i class="fa-solid fa-music"></i>
+                <a href="https://sevent33n-music.github.io/website/">Music Website</a>
+              </li>
+              <li>
+                <i class="fa-solid fa-info"></i>
+                <a href="">About Me Website</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button class="card-button" id="projectsBtn" onclick="toggleCard('projects')">Open</button>
+      </div> <!-- projects -->
+      <div class="card" id="contact" onclick="giveFocus('contact')">
+        <div class="card-details">
+          <div class="text-title"><h2>Socials</h2></div>
+          <div class="card-content">
+            <h1>Socials</h1>
+            <ul>
+              <!-- SevenT33N Music -->
+              <li>
+                <i class="fa-brands fa-github"></i>
+                <a href="https://github.com/SevenT33N-Music">SevenT33N Music</a>
+              </li> <!-- Github -->
+              <li>
+                <i class="fa-brands fa-youtube"></i>
+                <a href="https://www.youtube.com/@SevenT33N-Music">SevenT33N Music</a>
+              </li> <!-- Youtube -->
+              <li>
+                <i class="fa-brands fa-discord"></i>
+                <a href="javascript:alert('Link Inactive. Please Try Again Later.')">SevenT33N Music</a>
+              </li> <!-- Discord -->
+              <li>
+                <i class="fa-brands fa-patreon"></i>
+                <a href="javascript:alert('Link Inactive. Please Try Again Later.')">SevenT33N Music</a>
+              </li> <!-- Patreon -->
+              <li>
+                <i class="fa-brands fa-paypal"></i>
+                <a href="javascript:alert('Link Inactive. Please Try Again Later.')">SevenT33N Music</a>
+              </li> <!-- Paypal -->
+              <!-- Tyler -->
+              <li>
+                <i class="fa-brands fa-github"></i>
+                <a href="https://github.com/Tyler-Kelson">Tyler Kelson</a>
+              </li> <!-- Github -->
+              <li>
+                <i class="fa-brands fa-linkedin"></i>
+                <a href="javascript:alert('Link Inactive. Please Try Again Later.')">Tyler Kelson</a>
+              </li> <!-- LinkedIn -->
+              <li>
+                <i class="fa-brands fa-discord"></i>
+                <a href="javascript:alert('Link Inactive. Please Try Again Later.')">Tyler</a>
+              </li> <!-- Discord -->
+            </ul>
+          </div>
+        </div>
+        <button class="card-button" id="contactBtn" onclick="toggleCard('contact')">Open</button>
+      </div> <!-- Socials -->
+    </section>
+  </section>
   <script src="script.js"></script>
 </body>
 
 </html>
+<!-- <i class="fas fa-moon"></i> <i class="fas fa-sun"></i> -->

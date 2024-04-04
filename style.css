@@ -1,4 +1,348 @@
-html {
+/* ========== DOM Style ========== */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url('/custom-fonts/PlusJakartaSans-Regular.ttf');
+}
+:root {
+  --text-color: black;
+  --text-color-dark: #f7f7f7;
+  --text-color-link: #008fd6;
+  --text-color-link-dark: #00aaff;
+  --text-highlight-background: #bb9eff;
+  --text-highlight-background-dark: #383838;
+  --btn-background-color: #2e2e2e;
+  --btn-background-color-dark: #2e2e2e;
+  --btn-color: #ffffff;
+  --btn-color-dark: #2e2e2e;
+  --body-background: #f1e0ff;
+  --body-background-dark: #030034;
+  --card-background: #ffffff;
+  --card-background-dark: #222;
+}
+/*Add Custom Font*/
+* {
+  transition: all 0.75s cubic-bezier(.66,-0.03,.35,1.02);
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+html, body {
+  background: var(--body-background);
+  overflow-x: clip;
+  overflow-y: clip;
   height: 100%;
   width: 100%;
+  padding: 0;
+  margin: 0;
+}
+body.dark, html.dark {
+  background-color: var(--body-background-dark);
+}
+/* == Text Selection CSS == */
+/*Firefox*/
+::-moz-selection {
+  color: var(--text-color);
+  background: var(--text-highlight-background);
+}
+/*Everyone Else*/
+::selection {
+  color: var(--text-color);
+  background: var(--text-highlight-background);
+}
+
+/* ========== Containers ========== */
+.card-container {
+  width: 100vw;
+  margin: 2vh 0;
+  margin-top: 0;
+  padding: 10vh 25vw;
+  height: fit-content;
+  background-color: var(--body-background);
+}
+body.dark .card-container {
+  background-color: var(--body-background-dark);
+}
+.card-container.card-open {
+  margin: 0;
+  padding: 0 10vw;
+}
+
+/* ========== Header ========== */
+.header {
+  font-size: calc(1.25vw + 1.25vh);
+  text-align: center;
+  padding: calc(2vw + 2vh) calc(3vw + 3vh);
+  background-color: #ddd;
+}
+
+/* ========== Dark Mode Toggle ========== */
+.dark-toggle-btn {
+  overflow: clip;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  right: 1vw;
+  top: 1vh;
+  width: calc(2.65vw + 2.65vh);
+  height: calc(2.65vw + 2.65vh);
+  background-color: var(--btn-background-color);
+  color: var(--btn-color);
+  border-radius: 100%;
+  font-size: calc(1.5vw + 1.5vh);
+  cursor: pointer;
+  transition: all 0.25s ease 0.1s, filter 0.2s ease 0.1s, border-radius 0.6s ease 0.1s, width 0.3s ease 0.1s;
+}
+.dark-toggle-btn:hover, .dark-toggle-btn:active {
+  filter: brightness(1.1);
+  -webkit-filter: brightness(1.1);
+  -ms-filter: brightness(1.1);
+  width: calc(10vh + 10vw);
+  border-radius: 10px;
+  transition: all 0.25s ease, filter 0.2s ease, border-radius 0.2s ease, width 0.4s ease;
+}
+.icon {
+  border-radius: 100%;
+  width: calc(2.65vw + 2.65vh);
+  height: calc(2.65vw + 2.65vh);
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%) scale(0.4);
+  padding: 0;
+  margin: 0;
+  background-color: #FF8C00;
+  box-shadow: 0 0 calc(0.15vw + 0.5vh) calc(0.25vw + 0.5vh) rgba(255, 174, 0, 0.8);
+  transition: all 0.25s ease, right 0.25s ease 0.125s, background-color 0.25s ease 0.5s;
+}
+.icon::after {
+  content: '';
+  position: absolute;
+  border-radius: 100%;
+  right: calc(1.2vw + 1.15vh);
+  width: calc(1.5vw + 1.6vh);
+  height: calc(1.5vw + 1.6vh);
+  background-color: var(--btn-background-color);
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
+  transition: all 0.5s ease;
+}
+.dark-toggle-btn:hover .icon, .dark-toggle-btn:active .icon {
+  transition: all 0.25s ease 0s, right 0.25s ease, background-color 0.25s ease 0.4s, box-shadow 0.25s ease 0.4s;
+  right: 10%;
+}
+.theme-info {
+  font-size: calc(1vw + 1vh);
+  height: 80%;
+  width: 80%;
+  margin: 0;
+  margin-top: 10%;
+  text-align: center;
+  white-space: nowrap;
+  transition: opacity 0.1s ease;
+  opacity: 0;
+}
+.dark-toggle-btn:hover .theme-info, .dark-toggle-btn:active .theme-info {
+  transition: opacity 0.35s ease 0.2s;
+  opacity: 1;
+}
+/*dark mode*/
+body.dark .icon {
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%) scale(0.4);
+  background-color: #c7c7c7;
+  box-shadow: 2px 2px calc(0.15vw + 0.5vh) calc(0.1vw + 0.1vh) rgba(0,0, 0, 0.8);
+}
+body.dark .icon::after {
+  transition: all 0.25s ease, transform 0.5s ease 0.25s;
+  -webkit-transform-origin: top right;
+  -ms-transform-origin: top right;
+  transform-origin: top right;
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+body.dark .dark-toggle-btn:hover .icon, body.dark .dark-toggle-btn:active .icon {
+  transition: all 0.25s ease 0s, right 0.25s ease, background-color 0.25s ease;
+}
+
+/* ========== Cards ========== */
+/* Card 1 from Uiverse (modified) */
+.card {
+  width: 50vw;
+  height: 20vh;
+  border-radius: 15px;
+  background: var(--card-background);
+  color: var(--text-color);
+  position: relative;
+  padding: 0;
+  border: 2px solid #c3c6ce;
+  overflow: visible;
+  margin: 5vh 0;
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.25);
+}
+.card .text-title {
+  font-size: calc(2vw + 2vh);
+  font-weight: bold;
+  color: var(--text-color);
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  transition: all 0.75s cubic-bezier(.66,-0.03,.35,1.02), color 0.25s ease 0.1s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card.card-open .text-title {
+  height: 0;
+  opacity: 0;
+}
+.card .card-details {
+  text-align: center;
+  color: var(--text-color);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.card .card-button {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: 1rem;
+  border: none;
+  background-color: #008bf8;
+  color: #fff;
+  font-size: 1rem;
+  padding: .5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+.card .text-body {
+  color: var(--text-color);
+}
+.card .card-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  overflow: clip;
+  width: 100%;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.5s ease, opacity 0.25s ease;
+}
+.card .card-content a, .card .card-content p a {
+  text-decoration: none;
+  color: var(--text-color-link);
+}
+.card .card-content a:hover, .card .card-content p a:hover {
+  text-decoration: underline;
+}
+.card .card-content.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: clip;
+  text-align: center;
+  height: 0;
+  margin: 0;
+  width: 80%;
+}
+.card.card-open .card-content.text {
+  height: 100%;
+}
+.card .card-content ul {
+  list-style: none;
+  text-align: center;
+  padding: 2px;
+  margin: 0;
+  height: fit-content;
+}
+.card .card-content ul li {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  list-style: none;
+  text-align: center;
+  padding: 0.5vh;
+  margin: 0;
+}
+.card.card-open {
+  height: 80vh;
+  width: 80vw;
+  margin: 0;
+  margin-top: 7vh;
+  margin-bottom: 13vh;
+}
+.card.card-open .card-content {
+  height: 100%;
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease, opacity 0.25s ease 0.5s;
+}
+.card-container.card-open .card:not(.card.card-open) {
+  width: 80vw;
+  margin: calc(-0.05vw + -0.5vh);
+  padding: 0;
+  overflow: clip;
+  height: 0;
+  opacity: 0;
+}
+/*Hover*/
+.card:hover, .card:active, .card:focus {
+  border-color: #008bf8;
+  box-shadow: 0 10px 10px 3px rgba(0, 0, 0, 0.25);
+}
+.card:hover .card-button, .card:active .card-button, .card:focus .card-button {
+  transform: translate(-50%, 50%);
+  opacity: 1;
+}
+/*Dark Mode*/
+body.dark .card {
+  background-color: var(--card-background-dark);
+  color: var(--text-color-dark);
+  box-shadow: 0 5px 5px 0 rgba(0,139,248, 0.25);
+}
+body.dark .card .text-title {
+  font-size: calc(2vw + 2vh);
+  font-weight: bold;
+  color: var(--text-color-dark);
+}
+body.dark .card .card-content {
+  color: var(--text-color-dark);
+}
+body.dark .card:hover, body.dark .card:active, body.dark .card:focus {
+  border-color: #0065b3;
+  box-shadow: 0 10px 10px 3px rgba(0,139,248, 0.25);
+}
+body.dark .card .card-content a, body.dark .card .card-content p a {
+  text-decoration: none;
+  color: var(--text-color-link-dark);
+}
+body.dark .card .card-content a:hover, body.dark .card .card-content p a:hover {
+  text-decoration: underline;
 }
