@@ -1,0 +1,24 @@
+::{
+  "version": "1.1.0",
+  "lang": "en",
+  "name": "SevenT33N Music",
+  "short_name": "SVT About",
+  "description": "The Official Web App For SevenT33N Music (About Me)",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "3000x3000",
+      "type": "image/png"
+    }
+  ],
+  "scope": "/",
+  "start_url": "https://sevent33n-music.github.io/About-Me/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#00083f",
+  "background_color": "#00083f",
+  "categories": ["entertainment", "finance", "games", "music", "news", "business"],
+  "launch_handler": {
+    "client_mode": "auto"
+  }
+}

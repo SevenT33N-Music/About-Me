@@ -46,3 +46,31 @@ function giveFocus(id) {
     item.classList.add('card-focus');
   }
 }
+
+function calculateAge() {
+  var age = 0;
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  let d = new Date();
+  let day = d.getDay();
+  let month = d.getMonth();
+  let year = d.getFullYear();
+  let birthYear = 2005;
+  let birthday = 6;
+  let birthmonth = 11;
+  let yearDifference = Math.abs(parseInt(year) - birthYear);
+  let monthDifference = Math.abs(birthmonth - month);
+  if (monthDifference == 0) {
+    if (day >= 6) {
+      age = yearDifference;
+    }
+     else {
+       age = yearDifference - 1;
+     }
+  }
+  else {
+    age = yearDifference - 1;
+  }
+  return age;
+}
+document.getElementById('age').innerHTML = calculateAge();
